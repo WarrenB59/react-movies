@@ -25,11 +25,12 @@ const Form = () => {
             id="search-input"
             onChange={(event) => setSearch(event.target.value)}
           />
-          <input
+
+          {/* <input
             type="submit"
             value="Rechercher"
             // Bouton rechercher à mettre en marche avec fonction onClick
-          />
+          /> */}
         </form>
         <div className="btn-sort-container">
           <div
