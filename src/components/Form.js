@@ -6,15 +6,29 @@ const Form = () => {
   const [moviesData, setMoviesData] = useState([]);
   const [search, setSearch] = useState("");
   const [sortGoodBad, setSortGoodBad] = useState(null);
+  const [title, setTitle] = useState("");
+
+  // useEffect(() => {
+  //   console.log(search);
+  //   axios
+  //     .get(
+  //       `https://api.themoviedb.org/3/search/movie?api_key=196d32847ba997fce554d2a3ed81eb39&query=${search}&language=fr-FR`
+  //     )
+  //     .then((res) => setMoviesData(res.data.results));
+  // }, [search]);
 
   useEffect(() => {
+    console.log(title);
+  }, [title]);
+
+  const submit = (e) => {
+    e.preventDefault();
     axios
       .get(
-        `https://api.themoviedb.org/3/search/movie?api_key=196d32847ba997fce554d2a3ed81eb39&query=${search}&language=fr-FR`
+        `https://api.themoviedb.org/3/search/movie?api_key=196d32847ba997fce554d2a3ed81eb39&query=${title}&language=fr-FR`
       )
       .then((res) => setMoviesData(res.data.results));
-  }, [search]);
-
+  };
   return (
     <div className="form-component">
       <div className="form-container">
@@ -23,14 +37,16 @@ const Form = () => {
             type="text"
             placeholder="Entrez le titre d'un film"
             id="search-input"
-            onChange={(event) => setSearch(event.target.value)}
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
           />
 
-          {/* <input
+          <input
             type="submit"
             value="Rechercher"
+            onClick={submit}
             // Bouton rechercher à mettre en marche avec fonction onClick
-          /> */}
+          />
         </form>
         <div className="btn-sort-container">
           <div
