@@ -4,18 +4,18 @@ import Card from "./Card";
 
 const Form = () => {
   const [moviesData, setMoviesData] = useState([]);
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState("Avengers");
   const [sortGoodBad, setSortGoodBad] = useState(null);
   const [title, setTitle] = useState("");
 
-  // useEffect(() => {
-  //   console.log(search);
-  //   axios
-  //     .get(
-  //       `https://api.themoviedb.org/3/search/movie?api_key=196d32847ba997fce554d2a3ed81eb39&query=${search}&language=fr-FR`
-  //     )
-  //     .then((res) => setMoviesData(res.data.results));
-  // }, [search]);
+  useEffect(() => {
+    console.log(search);
+    axios
+      .get(
+        `https://api.themoviedb.org/3/search/movie?api_key=196d32847ba997fce554d2a3ed81eb39&query=${search}&language=fr-FR`
+      )
+      .then((res) => setMoviesData(res.data.results));
+  }, [search]);
 
   useEffect(() => {
     console.log(title);
@@ -73,6 +73,8 @@ const Form = () => {
               return max.vote_average - min.vote_average;
             } else if (sortGoodBad === "badToGood") {
               return min.vote_average - max.vote_average;
+            } else {
+              return 0;
             }
           })
           .map((movie) => (
