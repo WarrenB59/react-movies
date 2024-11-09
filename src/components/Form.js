@@ -4,10 +4,13 @@ import Card from "./Card";
 
 const Form = () => {
   const [moviesData, setMoviesData] = useState([]);
-  const [search, setSearch] = useState("Avengers");
+  const [search, setSearch] = useState("");
   const [sortGoodBad, setSortGoodBad] = useState(null);
   const [title, setTitle] = useState("");
 
+  useEffect(() => {
+    setSearch("Avengers");
+  }, []);
   useEffect(() => {
     console.log(search);
     axios
